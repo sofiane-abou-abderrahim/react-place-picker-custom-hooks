@@ -19,21 +19,7 @@ function App() {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  useEffect(() => {
-    async function fetchPlaces() {
-      setIsFetching(true);
-      try {
-        const places = await fetchUserPlaces();
-        setUserPlaces(places);
-      } catch (error) {
-        setError({ message: error.message || 'Failed to fetch user places.' });
-      }
-
-      setIsFetching(false);
-    }
-
-    fetchPlaces();
-  }, []);
+  useFetch();
 
   function handleStartRemovePlace(place) {
     setModalIsOpen(true);
@@ -47,11 +33,11 @@ function App() {
   async function handleSelectPlace(selectedPlace) {
     // await updateUserPlaces([selectedPlace, ...userPlaces]);
 
-    setUserPlaces((prevPickedPlaces) => {
+    setUserPlaces(prevPickedPlaces => {
       if (!prevPickedPlaces) {
         prevPickedPlaces = [];
       }
-      if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
+      if (prevPickedPlaces.some(place => place.id === selectedPlace.id)) {
         return prevPickedPlaces;
       }
       return [selectedPlace, ...prevPickedPlaces];
@@ -62,27 +48,25 @@ function App() {
     } catch (error) {
       setUserPlaces(userPlaces);
       setErrorUpdatingPlaces({
-        message: error.message || 'Failed to update places.',
+        message: error.message || 'Failed to update places.'
       });
     }
   }
 
   const handleRemovePlace = useCallback(
     async function handleRemovePlace() {
-      setUserPlaces((prevPickedPlaces) =>
-        prevPickedPlaces.filter(
-          (place) => place.id !== selectedPlace.current.id
-        )
+      setUserPlaces(prevPickedPlaces =>
+        prevPickedPlaces.filter(place => place.id !== selectedPlace.current.id)
       );
 
       try {
         await updateUserPlaces(
-          userPlaces.filter((place) => place.id !== selectedPlace.current.id)
+          userPlaces.filter(place => place.id !== selectedPlace.current.id)
         );
       } catch (error) {
         setUserPlaces(userPlaces);
         setErrorUpdatingPlaces({
-          message: error.message || 'Failed to delete place.',
+          message: error.message || 'Failed to delete place.'
         });
       }
 
