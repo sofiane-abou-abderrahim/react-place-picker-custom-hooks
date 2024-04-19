@@ -23,3 +23,17 @@
 3. inside of it, create a hook by defining a function named `useFetch`
 4. outsource the `useEffect` code from `App.jsx` by copying it and pasting it inside of this `useFetch` custom hook
 5. get rid of the `useEffect` code from `App.jsx` & call this `useFetch` custom hook instead
+
+## 2. Custom Hook: Managing State & Returning State Values
+
+1. manage some state in `useFetch.js` to make this `useFetch` custom hook functional
+2. add a `isFetching`, `error` & `fetchedData` state
+3. add a `fetchFn` function as a parameter of the `useFetch` hook to make it usable with all kind of fetch functions
+4. execute this `fetchFn` function inside of the `useFetch` hook
+5. replace the name of the `fetchPlaces` function with `fetchData`
+6. add `fetchFn` as a dependency of the `useEffect` hook
+7. return the states to make them available outside of the hook
+8. export the `useFetch` custom hook to make it available in components
+9. call the `useFetch` hook in `App.jsx` and pass the `fetchUserPlaces` to it as an argument
+10. get the returned state snapshots from the `useFetch` hook as a result of calling `useFetch` with help of object destructuring
+11. add `intialValue` prop to the `useFetch` hook to make some state more configurable
