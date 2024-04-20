@@ -37,3 +37,10 @@
 9. call the `useFetch` hook in `App.jsx` and pass the `fetchUserPlaces` to it as an argument
 10. get the returned state snapshots from the `useFetch` hook as a result of calling `useFetch` with help of object destructuring
 11. add `intialValue` prop to the `useFetch` hook to make some state more configurable
+
+## 3. Exposing Nested Functions From The Custom Hook
+
+1. make the updating function `setFetchedData` available by returning it in the `useFetch` hook
+2. in `App.jsx`, extract this `setFetchedData` updating function
+3. for completeness sake, and to get rid of the eslint warning, add `setUserPlaces` as a dependency of the `useCallback` hook in `App.jsx`
+   It technically won't make a difference though because it does refer to a state updating function and those are guaranteed by React to never change.
