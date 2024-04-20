@@ -49,3 +49,10 @@
 
 1. get rid of the `useEffect` code in `AvailablePlaces.jsx` & replace it with the `useFetch` custom hook
 2. keep the code where you calculate the distance though
+
+## 5. Creating Flexible Custom Hooks
+
+1. bring back that sorting by distance logic by creating a separate `fetchSortedPlaces` function outside the `AvailablePlaces` component function
+2. inside of bring the sorting logic & make sure that you return a promise after you get the current position by creating a `new Promise` object
+3. resolve the `sortedPlaces`
+4. use this `fetchSortedPlaces` function as a data fetching function in the `useFetch` function in `AvailablePlaces.jsx`
