@@ -44,3 +44,8 @@
 2. in `App.jsx`, extract this `setFetchedData` updating function
 3. for completeness sake, and to get rid of the eslint warning, add `setUserPlaces` as a dependency of the `useCallback` hook in `App.jsx`
    It technically won't make a difference though because it does refer to a state updating function and those are guaranteed by React to never change.
+
+## 4. Using A Custom Hook in Multiple Components
+
+1. get rid of the `useEffect` code in `AvailablePlaces.jsx` & replace it with the `useFetch` custom hook
+2. keep the code where you calculate the distance though
